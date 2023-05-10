@@ -58,7 +58,10 @@ __rmw_publish(
   data.data = const_cast<void *>(ros_message);
   data.impl = info->type_support_impl_;
   TRACEPOINT(rmw_publish, ros_message);
-  if (!info->data_writer_->write(&data)) {
+  eprosima::fastdds::Time_t stamp;
+  eprosima::fastdds::Time_t::now(stamp);
+  RACEPOINT(write, (const void*)publisher, ros_message, stamp);
+  if (!info->data_writer_->write_w_timestamp(&data, eprosima::fastdds::dds::HANDLE_NIL, stamp)) {
     RMW_SET_ERROR_MSG("cannot publish data");
     return RMW_RET_ERROR;
   }

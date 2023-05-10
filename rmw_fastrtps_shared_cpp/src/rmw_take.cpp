@@ -125,6 +125,7 @@ _take(
     }
   }
 
+  TRACEPOINT(read, static_cast<const void *>(subscription), static_cast<const void *>(ros_message));
   TRACEPOINT(
     rmw_take,
     static_cast<const void *>(subscription),

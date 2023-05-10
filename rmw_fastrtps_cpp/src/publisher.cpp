@@ -325,5 +325,6 @@ rmw_fastrtps_cpp::create_publisher(
     rmw_publisher_init,
     static_cast<const void *>(rmw_publisher),
     info->publisher_gid.data);
+  TRACEPOINT(create_writer, static_cast<const void *>(info->data_writer_), info->topic_, info->publisher_gid.data);
   return rmw_publisher;
 }

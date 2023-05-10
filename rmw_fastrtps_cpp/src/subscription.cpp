@@ -458,6 +458,7 @@ __create_dynamic_subscription(
     rmw_subscription_init,
     static_cast<const void *>(rmw_subscription),
     info->subscription_gid_.data);
+  TRACEPOINT(create_reader, static_cast<const void *>(info->data_reader_), info->topic_, info->subscription_gid_.data);
   return rmw_subscription;
 }
 
@@ -725,6 +726,7 @@ __create_subscription(
     rmw_subscription_init,
     static_cast<const void *>(rmw_subscription),
     info->subscription_gid_.data);
+  TRACEPOINT(create_reader, static_cast<const void *>(info->data_reader_), info->topic_, info->subscription_gid_.data);
   return rmw_subscription;
 }
 
